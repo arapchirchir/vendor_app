@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "657978336882",
+    "project_id": "letsy-digital-ke",
+    "storage_bucket": "letsy-digital-ke.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657978336882:android:ea2677df632bded9f144eb",
+        "android_client_info": {
+          "package_name": "com.delivery.letsy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCekadYA4dssbzAI4Rk5uKn5c2tVtJ7bXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657978336882:android:7c274284aeb07681f144eb",
+        "android_client_info": {
+          "package_name": "com.vendor.letsy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCekadYA4dssbzAI4Rk5uKn5c2tVtJ7bXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

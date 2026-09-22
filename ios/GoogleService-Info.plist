@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB9-3SUaCb7m2taaIiQGr7kBKC8fT36BHE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>657978336882</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.vendor.letsy</string>
+	<key>PROJECT_ID</key>
+	<string>letsy-digital-ke</string>
+	<key>STORAGE_BUCKET</key>
+	<string>letsy-digital-ke.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:657978336882:ios:186d2d9d6ddd41f2f144eb</string>
+</dict>
+</plist>

@@ -36,9 +36,9 @@ class SplashController extends GetxController implements GetxService {
 
       splashServiceInterface.handleInitialTopicSubscription();
       if (closeRoute) return true;
-      bool isMaintenanceMode = _configModel!.maintenanceMode!;
+      bool isMaintenanceMode = _configModel?.maintenanceMode ?? false;
       String platform = 'vendor_app';
-      bool isInMaintenance = isMaintenanceMode && _configModel!.maintenanceModeData!.maintenanceSystemSetup!.contains(platform);
+      bool isInMaintenance = isMaintenanceMode && (_configModel?.maintenanceModeData?.maintenanceSystemSetup?.contains(platform) ?? false);
 
       if(isInMaintenance) {
         Get.offNamed(RouteHelper.getUpdateRoute(false));

@@ -147,12 +147,17 @@ class ApiClient extends GetxService {
     try {
       body = jsonDecode(response.body);
     }catch(_) {}
+    final String? envelopeMessage = envelopeMessageOf(body, response.statusCode);
+    body = unwrapEnvelope(body, response.statusCode);
     Response response0 = Response(
       body: body ?? response.body, bodyString: response.body.toString(),
-      headers: response.headers, statusCode: response.statusCode, statusText: response.reasonPhrase,
+      headers: response.headers, statusCode: response.statusCode, statusText: envelopeMessage ?? response.reasonPhrase,
     );
     if(response0.statusCode != 200 && response0.body != null && response0.body is !String) {
-      if(response0.body.toString().startsWith('{errors: [{code:')) {
+      final String? envelopeError = envelopeErrorMessageOf(response0.body);
+      if (envelopeError != null) {
+        response0 = Response(statusCode: response0.statusCode, body: response0.body, statusText: envelopeError);
+      } else if(response0.body.toString().startsWith('{errors: [{code:')) {
         ErrorResponse errorResponse = ErrorResponse.fromJson(response0.body);
         response0 = Response(statusCode: response0.statusCode, body: response0.body, statusText: errorResponse.errors![0].message);
       }else if(response0.body.toString().startsWith('{message')) {
@@ -172,6 +177,41 @@ class ApiClient extends GetxService {
     } else {
       return response0;
     }
+  }
+
+  static dynamic unwrapEnvelope(dynamic body, int? statusCode) {
+    if (statusCode == null || statusCode < 200 || statusCode >= 300 || body is! Map) return body;
+    if (!body.containsKey('identical_code') || body['content'] == null) return body;
+    return body['content'];
+  }
+
+  static String? envelopeMessageOf(dynamic body, int? statusCode) {
+    if (statusCode == null || statusCode < 200 || statusCode >= 300 || body is! Map) return null;
+    if (!body.containsKey('identical_code') || body['content'] == null) return null;
+    final dynamic message = body['message'];
+    return message is String ? message : null;
+  }
+
+  static String? envelopeErrorMessageOf(dynamic body) {
+    if (body is! Map || !body.containsKey('identical_code')) return null;
+
+    final dynamic errors = body['errors'];
+    if (errors is List && errors.isNotEmpty) {
+      final dynamic first = errors.first;
+      if (first is Map && first['message'] is String && (first['message'] as String).isNotEmpty) {
+        return first['message'] as String;
+      }
+    } else if (errors is Map && errors.isNotEmpty) {
+      final dynamic first = errors.values.first;
+      if (first is List) {
+        if (first.isNotEmpty) return first.first?.toString();
+      } else if (first is String && first.isNotEmpty) {
+        return first;
+      }
+    }
+
+    final dynamic message = body['message'];
+    return message is String && message.isNotEmpty ? message : null;
   }
 }
 

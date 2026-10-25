@@ -9,7 +9,7 @@ class AppConstants {
   static const double limitOfPickedVideoSizeInMB = 50;
   static const double maxSizeOfASingleFile = 10;
 
-  static const String baseUrl = 'https://admin.letsy.co.ke';
+  static const String baseUrl = 'https://letsy.co.ke';
 
   static const String configUri = '/api/v1/config';
   static const String loginUri = '/api/v1/auth/vendor/login';
